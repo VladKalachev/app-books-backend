@@ -1,3 +1,6 @@
+import Book from "#app/models/book.js";
+
 export default async function booksAll(request, response){
-  response.end('books');
+  const books = await Book.findAll();
+  response.json(books);
 }

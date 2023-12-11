@@ -44,12 +44,17 @@ export default function routesBooks(app){
 
   /**
   * @swagger
-  * /api/books:
+  * /api/books/create:
   *   post:
   *     summary: Добавление книги
   *     description: Добавление книги
   *     tags:
   *      - Books
+  *     parameters:
+  *       - name: title
+  *         in: path
+  *         description: Наименование книги
+  *         required: true
   *     responses:
   *       200:
   *         description: Добавление книги
