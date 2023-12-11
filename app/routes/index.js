@@ -6,7 +6,7 @@ export default function registerRoutes(app){
   * @swagger
   * tags:
   *   name: User
-  *   description: Управлением пользователем и авторизация
+  *   description: Пользователи
   */
   routesAuth(app);
 	
