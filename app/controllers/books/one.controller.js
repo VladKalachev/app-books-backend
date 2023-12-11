@@ -1,3 +1,14 @@
+import { Op } from 'sequelize'
+import Book from "#app/models/book.js";
+
 export default async function bookOne(request, response){
-  response.end('bookOne');
+  const fromId = parseInt(request.params.id ?? '0');
+  console.log(fromId)
+  const book = await Book.findOne({
+    where: {
+      id: fromId
+    }
+  });
+
+  response.json(book);
 }
