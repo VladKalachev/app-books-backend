@@ -17,7 +17,7 @@ export default function routesBooks(app){
   *      - Books
   *     responses:
   *       200:
-  *         description: hello world
+  *         description: Успешное получение списка книг
   */
   app.get('/api/books', booksAll);
 
@@ -29,9 +29,16 @@ export default function routesBooks(app){
   *     description: Получеине одной книги
   *     tags:
   *      - Books
+  *     parameters:
+  *            - name: id
+  *              in: path
+  *              description: id у книги
+  *              required: true
   *     responses:
   *       200:
-  *         description: hello world
+  *         description: Успешное получение книги по id
+  *       500:
+  *        description: Ошибка на сервере
   */
   app.get('/api/books/:id', bookOne);
 
@@ -45,21 +52,26 @@ export default function routesBooks(app){
   *      - Books
   *     responses:
   *       200:
-  *         description: hello world
+  *         description: Добавление книги
   */
   app.post('/api/books/create', bookCreate);
 
   /**
   * @swagger
-  * /api/books:
+  * /api/books/:id:
   *   delete:
   *     summary: Удаление книги
   *     description: Удаление книги
   *     tags:
   *      - Books
+  *     parameters:
+  *       - name: id
+  *         in: path
+  *         description: id у книги
+  *         required: true
   *     responses:
   *       200:
-  *         description: hello world
+  *         description: Успешное удаление книги
   */
   app.delete('/api/books/:id', bookRemove);
 
@@ -71,9 +83,14 @@ export default function routesBooks(app){
   *     description: Редактирование книги
   *     tags:
   *      - Books
+  *     parameters:
+  *       - name: id
+  *         in: path
+  *         description: id у книги
+  *         required: true
   *     responses:
   *       200:
-  *         description: hello world
+  *         description: Успешное обновление книги
   */
   app.put('/api/books/:id', bookUpdate);
 }
