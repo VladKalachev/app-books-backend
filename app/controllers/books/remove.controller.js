@@ -1,5 +1,14 @@
 import Book from "#app/models/book.js";
 
 export default async function bookRemove(request, response){
-  response.end('bookRemove');
+  const fromId = parseInt(request.params.id ?? '0');
+
+  const book = await Book.findOne({
+    where: {
+      id: fromId
+    }
+  });
+
+  await book.destroy();
+  response.end(JSON.stringify(true));
 }
