@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../globals/sequelize';
 
-const Book = sequelize.define('Book', {
+const BookModel = sequelize.define('Book', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -53,10 +53,10 @@ const Book = sequelize.define('Book', {
   },
 });
 
-export default Book;
+export default BookModel;
 
-// const Book = sequelize.define(
-//     'Book',
+// const BookModel = sequelize.define(
+//     'BookModel',
 //     {
 
 //         read: {
@@ -70,4 +70,4 @@ export default Book;
 //     },
 // );
 //
-// export default Book;
+// export default BookModel;

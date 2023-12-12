@@ -1,11 +1,12 @@
 module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'prettier'],
   env: {
     browser: true,
     es2021: true,
   },
   extends: ['standard-with-typescript', 'prettier'],
-  plugins: ['prettier'],
-  parser: '@typescript-eslint/parser',
   overrides: [
     {
       env: {

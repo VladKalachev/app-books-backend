@@ -1,4 +1,4 @@
-import 'dotenv/config'
-import User from "../src/app/models/user";
+import 'dotenv/config';
+import UserModel from '../src/app/models/user.model';
 
-await User.sync({ alter: true });
+await UserModel.sync({ alter: true });

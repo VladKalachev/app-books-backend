@@ -1,15 +1,15 @@
-import routesAuth from './auth';
-import routesBooks from './books';
+import routesUser from './user';
+import routesBook from './book';
 import type { Express } from 'express';
 
 export default function registerRoutes(app: Express) {
   /**
    * @swagger
    * tags:
-   *   name: User
+   *   name: UserModel
    *   description: Пользователи
    */
-  routesAuth(app);
+  routesUser(app);
 
   /**
    * @swagger
@@ -17,5 +17,5 @@ export default function registerRoutes(app: Express) {
    *   name: Books
    *   description: Книги
    */
-  routesBooks(app);
+  routesBook(app);
 }
