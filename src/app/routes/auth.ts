@@ -1,9 +1,9 @@
-import check from "../controllers/auth/check.contoller";
-import login from "../controllers/auth/login.contoller";
-import type {Express} from "express";
+import check from '../controllers/auth/check.contoller'
+import login from '../controllers/auth/login.contoller'
+import type { Express } from 'express'
 
-export default function routesAuth(app: Express){
-   /**
+export default function routesAuth (app: Express) {
+  /**
    * @swagger
    * /api/auth/check:
    *   get:
@@ -17,9 +17,9 @@ export default function routesAuth(app: Express){
    *       500:
    *         description: Server Error
    */
-	app.get('/api/auth/check', check);
+  app.get('/api/auth/check', check)
 
-   /**
+  /**
    * @swagger
    * /api/auth/check:
    *   post:
@@ -33,5 +33,5 @@ export default function routesAuth(app: Express){
    *       500:
    *         description: Server Error
    */
-	app.post('/api/auth/login', login);
+  app.post('/api/auth/login', login)
 }

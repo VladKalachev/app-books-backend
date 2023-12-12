@@ -1,5 +1,5 @@
-import { Request, Response } from 'express';
+import { type Request, type Response } from 'express'
 
-export default function check(req: Request, res: Response){
-	res.end('Auth checkContoller controller');
+export default function check (req: Request, res: Response) {
+  res.end('Auth checkContoller controller')
 }

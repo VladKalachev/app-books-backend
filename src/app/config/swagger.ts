@@ -6,13 +6,13 @@ export default {
     info: {
       title: 'My Book App',
       version: '0.0.1',
-      description: "REST API for my Book App"
+      description: 'REST API for my Book App'
     },
-		servers: [
-			{
-				url: HOST,
-			},
-		],
+    servers: [
+      {
+        url: HOST
+      }
+    ]
   },
-  apis: ['./app/routes/*.ts'],
-};
+  apis: ['./app/routes/*.ts']
+}

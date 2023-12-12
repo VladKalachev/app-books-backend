@@ -1,13 +1,11 @@
+import booksAll from '../controllers/books/all.controller'
+import bookOne from '../controllers/books/one.controller'
+import bookCreate from '../controllers/books/create.controller'
+import bookRemove from '../controllers/books/remove.controller'
+import bookUpdate from '../controllers/books/update.controller'
+import { type Express } from 'express'
 
-
-import booksAll from '../controllers/books/all.controller';
-import bookOne from '../controllers/books/one.controller';
-import bookCreate from '../controllers/books/create.controller';
-import bookRemove from '../controllers/books/remove.controller';
-import bookUpdate from "../controllers/books/update.controller";
-import {Express} from "express";
-
-export default function routesBooks(app: Express){
+export default function routesBooks (app: Express) {
   /**
   * @swagger
   * /api/books:
@@ -20,7 +18,7 @@ export default function routesBooks(app: Express){
   *       200:
   *         description: Успешное получение списка книг
   */
-  app.get('/api/books', booksAll);
+  app.get('/api/books', booksAll)
 
   /**
   * @swagger
@@ -41,7 +39,7 @@ export default function routesBooks(app: Express){
   *       500:
   *        description: Ошибка на сервере
   */
-  app.get('/api/books/:id', bookOne);
+  app.get('/api/books/:id', bookOne)
 
   /**
   * @swagger
@@ -60,7 +58,7 @@ export default function routesBooks(app: Express){
   *       200:
   *         description: Добавление книги
   */
-  app.post('/api/books/create', bookCreate);
+  app.post('/api/books/create', bookCreate)
 
   /**
   * @swagger
@@ -79,7 +77,7 @@ export default function routesBooks(app: Express){
   *       200:
   *         description: Успешное удаление книги
   */
-  app.delete('/api/books/:id', bookRemove);
+  app.delete('/api/books/:id', bookRemove)
 
   /**
   * @swagger
@@ -98,5 +96,5 @@ export default function routesBooks(app: Express){
   *       200:
   *         description: Успешное обновление книги
   */
-  app.put('/api/books/:id', bookUpdate);
+  app.put('/api/books/:id', bookUpdate)
 }
