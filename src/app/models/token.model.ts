@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../globals/sequelize';
 
-const UserModel = sequelize.define('User', {
+const TokenModel = sequelize.define('Token', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -12,10 +12,6 @@ const UserModel = sequelize.define('User', {
     allowNull: false,
     unique: true,
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
 });
 
-export default UserModel;
+export default TokenModel;

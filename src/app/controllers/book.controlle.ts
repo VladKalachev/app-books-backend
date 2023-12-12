@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from 'express';
-import { bookService } from '../service/book.service';
+import bookService from '../service/book.service';
 import BookModel from '../models/book.model';
 
 class BookController {

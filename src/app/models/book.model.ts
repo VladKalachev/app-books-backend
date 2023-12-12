@@ -54,20 +54,3 @@ const BookModel = sequelize.define('Book', {
 });
 
 export default BookModel;
-
-// const BookModel = sequelize.define(
-//     'BookModel',
-//     {
-
-//         read: {
-//             type: DataTypes.BOOLEAN,
-//             allowNull: false,
-//         },
-//         buy: {
-//             type: DataTypes.BOOLEAN,
-//             allowNull: false,
-//         },
-//     },
-// );
-//
-// export default BookModel;
