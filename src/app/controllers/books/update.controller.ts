@@ -1,14 +1,14 @@
-import Book from '../../models/book'
-import { type Request, type Response } from 'express'
+import Book from '../../models/book';
+import { type Request, type Response } from 'express';
 
-export default async function bookUpdate (req: Request, res: Response) {
-  const fromId = parseInt(req.params.id ?? '0')
+export default async function bookUpdate(req: Request, res: Response) {
+  const fromId = parseInt(req.params.id ?? '0');
 
   const book = await Book.findOne({
     where: {
-      id: fromId
-    }
-  })
+      id: fromId,
+    },
+  });
 
   const {
     title,
@@ -21,8 +21,8 @@ export default async function bookUpdate (req: Request, res: Response) {
     publishing,
     notes,
     read,
-    buy
-  } = req.body
+    buy,
+  } = req.body;
 
   await book?.update({
     title,
@@ -35,8 +35,8 @@ export default async function bookUpdate (req: Request, res: Response) {
     publishing,
     notes,
     read,
-    buy
-  })
+    buy,
+  });
 
-  res.end(JSON.stringify(book))
+  res.end(JSON.stringify(book));
 }

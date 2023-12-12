@@ -1,3 +1,3 @@
 export interface IUser {
-  fullName: string
+  fullName: string;
 }

@@ -1,7 +1,7 @@
-import Book from '../../models/book'
-import { type Request, type Response } from 'express'
+import Book from '../../models/book';
+import { type Request, type Response } from 'express';
 
-export default async function bookCreate (req: Request, res: Response) {
+export default async function bookCreate(req: Request, res: Response) {
   const {
     title,
     description,
@@ -13,8 +13,8 @@ export default async function bookCreate (req: Request, res: Response) {
     publishing,
     notes,
     read,
-    buy
-  } = req.body
+    buy,
+  } = req.body;
 
   const books = await Book.create({
     title,
@@ -27,7 +27,7 @@ export default async function bookCreate (req: Request, res: Response) {
     publishing,
     notes,
     read,
-    buy
-  })
-  res.end(JSON.stringify(books))
+    buy,
+  });
+  res.end(JSON.stringify(books));
 }
