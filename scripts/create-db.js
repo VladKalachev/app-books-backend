@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import mariadb from 'mariadb';
-import { DB_HOST, DB_NAME, DB_PASS, DB_USER } from '#app/config/db.js'
+import { DB_HOST, DB_NAME, DB_PASS, DB_USER } from '../src/app/config/db'
 
 const connection = mariadb.createConnection({
     host: DB_HOST,

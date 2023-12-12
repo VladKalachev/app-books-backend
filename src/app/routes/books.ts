@@ -1,12 +1,13 @@
 
 
-import booksAll from '#app/controllers/books/all.controller.js';
-import bookOne from '#app/controllers/books/one.controller.js';
-import bookCreate from '#app/controllers/books/create.controller.js';
-import bookRemove from '#app/controllers/books/remove.controller.js';
-import bookUpdate from "#app/controllers/books/update.controller.js";
+import booksAll from '../controllers/books/all.controller';
+import bookOne from '../controllers/books/one.controller';
+import bookCreate from '../controllers/books/create.controller';
+import bookRemove from '../controllers/books/remove.controller';
+import bookUpdate from "../controllers/books/update.controller";
+import {Express} from "express";
 
-export default function routesBooks(app){
+export default function routesBooks(app: Express){
   /**
   * @swagger
   * /api/books:

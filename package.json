@@ -2,10 +2,9 @@
   "name": "app-books-frontend",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "index.ts",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -22,9 +21,13 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   },
-  "imports": {
-    "#app/*": {
-      "default": "./app/*"
-    }
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.4",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }

@@ -1,7 +1,8 @@
-import routesAuth from './auth.js';
-import routesBooks from './books.js';
+import routesAuth from './auth';
+import routesBooks from './books';
+import type {Express} from "express";
 
-export default function registerRoutes(app){
+export default function registerRoutes(app: Express){
   /**
   * @swagger
   * tags:

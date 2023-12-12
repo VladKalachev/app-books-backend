@@ -1,7 +1,8 @@
-import Book from "#app/models/book.js";
+import Book from "../../models/book";
+import {Request, Response} from "express";
 
-export default async function bookUpdate(request, response){
-  const fromId = parseInt(request.params.id ?? '0');
+export default async function bookUpdate(req: Request, res: Response){
+  const fromId = parseInt(req.params.id ?? '0');
 
   const book = await Book.findOne({
     where: {
@@ -21,9 +22,9 @@ export default async function bookUpdate(request, response){
     notes,
     read,
     buy
-  } = request.body;
+  } = req.body;
 
-  await book.update({
+  await book?.update({
     title,
     description,
     genre,
@@ -37,5 +38,5 @@ export default async function bookUpdate(request, response){
     buy
   });
 
-  response.end(JSON.stringify(book));
+  res.end(JSON.stringify(book));
 }

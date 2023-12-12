@@ -1,4 +1,4 @@
-import { HOST } from './app.js'
+import { HOST } from './app'
 
 export default {
   definition: {

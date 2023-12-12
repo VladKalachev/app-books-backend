@@ -1,3 +1,3 @@
 {
-	"watch": [ "./index.js", "./app" ]
+	"watch": [ "./index.ts", "./src/app" ]
 }

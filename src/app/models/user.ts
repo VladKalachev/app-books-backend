@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '#app/globals/sequelize.js';
+import sequelize from '../globals/sequelize';
 
 const User = sequelize.define(
     'User',
@@ -19,17 +19,6 @@ const User = sequelize.define(
             allowNull: false
         }
     },
-    {
-        sequelize,
-        defaultScope: {
-            attributes: { exclude: [ 'password' ] }
-        },
-        scopes: {
-            auth: {
-                attributes: {}
-            }
-        }
-    }
 );
 
 

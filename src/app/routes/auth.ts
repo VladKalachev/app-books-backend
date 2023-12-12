@@ -1,7 +1,8 @@
-import check from "#app/controllers/auth/check.controller.js";
-import login from "#app/controllers/auth/login.controller.js";
+import check from "../controllers/auth/check";
+import login from "../controllers/auth/login";
+import type {Express} from "express";
 
-export default function routesAuth(app){
+export default function routesAuth(app: Express){
    /**
    * @swagger
    * /api/auth/check:

@@ -1,4 +1,4 @@
 import 'dotenv/config'
-import Book from "#app/models/book.js";
+import Book from "../src/app/models/book";
 
 await Book.sync({ alter: true });

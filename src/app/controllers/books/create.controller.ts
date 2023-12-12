@@ -1,6 +1,7 @@
-import Book from "#app/models/book.js";
+import Book from "../../models/book";
+import {Request, Response} from "express";
 
-export default async function bookCreate(request, response){
+export default async function bookCreate(req: Request, res: Response){
   const {
     title,
     description,
@@ -13,7 +14,7 @@ export default async function bookCreate(request, response){
     notes,
     read,
     buy
-  } = request.body;
+  } = req.body;
 
   const books = await Book.create({
     title,
@@ -28,5 +29,5 @@ export default async function bookCreate(request, response){
     read,
     buy
   });
-  response.end(JSON.stringify(books));
+  res.end(JSON.stringify(books));
 }

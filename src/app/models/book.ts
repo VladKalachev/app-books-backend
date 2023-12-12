@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '#app/globals/sequelize.js';
+import sequelize from '../globals/sequelize';
 
 
 const Book = sequelize.define(

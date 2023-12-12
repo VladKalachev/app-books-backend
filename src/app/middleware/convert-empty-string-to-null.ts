@@ -1,4 +1,6 @@
-export default server => {
+import {Express} from "express";
+
+export default (server: Express) => {
     server.use((request, _, next) => {
         if(['POST', 'PATCH', 'PUT'].includes(request.method)){
             for(let key in request.body){
