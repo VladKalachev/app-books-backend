@@ -1,5 +1,5 @@
-import check from "../controllers/auth/check";
-import login from "../controllers/auth/login";
+import check from "../controllers/auth/check.contoller";
+import login from "../controllers/auth/login.contoller";
 import type {Express} from "express";
 
 export default function routesAuth(app: Express){

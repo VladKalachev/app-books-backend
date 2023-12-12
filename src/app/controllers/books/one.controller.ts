@@ -1,14 +1,13 @@
 import Book from "../../models/book";
 import {Request, Response} from "express";
+import {bookService} from "../../services/book.service";
 
 export default async function bookOne(req: Request, res: Response){
   const fromId = parseInt(req.params.id ?? '0');
-
-  const book = await Book.findOne({
-    where: {
-      id: fromId
-    }
-  });
-
-  res.json(book);
+  try {
+    const book = await bookService.one(fromId);
+    res.json(book);
+  } catch (e) {
+    res.json(e);
+  }
 }

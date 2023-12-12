@@ -14,5 +14,5 @@ export default {
 			},
 		],
   },
-  apis: ['./app/routes/*.js'],
+  apis: ['./app/routes/*.ts'],
 };
