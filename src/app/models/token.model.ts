@@ -7,10 +7,13 @@ const TokenModel = sequelize.define('Token', {
     primaryKey: true,
     autoIncrement: true,
   },
-  email: {
+  user: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+  },
+  refreshToken: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 

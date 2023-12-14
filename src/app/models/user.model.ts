@@ -16,6 +16,14 @@ const UserModel = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  isActivated: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  activationLink: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 export default UserModel;
