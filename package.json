@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "server": "nodemon src/index.ts",
+    "script": "ts-node",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
