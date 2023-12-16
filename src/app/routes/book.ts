@@ -1,5 +1,5 @@
 import bookController from '../controllers/book.controlle';
-import { type Express } from 'express';
+import type { Express } from 'express';
 
 export default function routesBook(app: Express) {
   /**
