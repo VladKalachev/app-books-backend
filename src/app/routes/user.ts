@@ -1,8 +1,8 @@
 import userController from '../controllers/user.controller';
 
-import type { Express } from 'express';
+import type { Application } from 'express';
 
-export default function routesUser(app: Express) {
+export default function routesUser(app: Application) {
   /**
    * @swagger
    * /api/users/registration:
@@ -35,6 +35,11 @@ export default function routesUser(app: Express) {
    */
   app.post('/api/user/login', userController.login);
 
+  /**
+   * @openapi
+   * /api/user/logout
+   *  post
+   */
   app.post('/api/user/logout', userController.logout);
 
   app.post('/api/user/refresh', userController.refresh);

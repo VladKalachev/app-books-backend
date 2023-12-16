@@ -1,9 +1,12 @@
-import type { Request, Response, NextFunction } from 'express';
+import { type Request, type Response, type NextFunction } from 'express';
 import bookService from '../service/book.service';
 import BookModel from '../models/book.model';
+import { Get, Route, Controller } from 'tsoa';
 
-class BookController {
-  async all(req: Request, res: Response, next: NextFunction) {
+@Route('book')
+class BookController extends Controller {
+  @Get('/')
+  async all(_: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const books = await bookService.all();
       res.json(books);

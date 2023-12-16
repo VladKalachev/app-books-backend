@@ -1,17 +1,17 @@
 import 'dotenv/config';
 import cors from 'cors';
-import express, { type Express } from 'express';
+import express, { type Application } from 'express';
 
 import { HOST, PORT } from './app/config/app';
 import { CLIENT_HOST } from './app/config/client';
 
-import registerSwagger from './app/globals/swagger';
+import registerSwagger from './app/routes/swagger';
 import registerRoutes from './app/routes/index';
 import registerMiddleware from './app/middleware/index';
 
 import '../src/app/globals/sequelize';
 
-const app: Express = express();
+const app: Application = express();
 
 app.use(
   cors({
@@ -24,5 +24,5 @@ app.listen(PORT, () => {
 });
 
 registerMiddleware(app);
-registerRoutes(app);
 registerSwagger(app);
+registerRoutes(app);

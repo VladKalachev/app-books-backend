@@ -1,8 +1,8 @@
 import routesUser from './user';
 import routesBook from './book';
-import type { Express } from 'express';
+import type { Application } from 'express';
 
-export default function registerRoutes(app: Express) {
+export default function registerRoutes(app: Application) {
   /**
    * @swagger
    * tags:

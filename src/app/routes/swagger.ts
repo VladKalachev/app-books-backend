@@ -1,10 +1,10 @@
-import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import options from '../config/swagger';
-import type { Express } from 'express';
+import type { Application } from 'express';
+import swaggerUi from 'swagger-ui-express';
 
 const swaggerSpec = swaggerJsdoc(options);
 
-export default function registerSwagger(app: Express) {
+export default function routesSwagger(app: Application) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 }

@@ -1,6 +1,6 @@
-import { type Express } from 'express';
+import type { Application } from 'express';
 
-export default (server: Express) => {
+export default (server: Application) => {
   server.use((request, _, next) => {
     if (['POST', 'PATCH', 'PUT'].includes(request.method)) {
       for (const key in request.body) {

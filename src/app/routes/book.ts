@@ -1,7 +1,8 @@
 import bookController from '../controllers/book.controlle';
-import type { Express } from 'express';
+import type { Application } from 'express';
+import { Route } from 'tsoa';
 
-export default function routesBook(app: Express) {
+export default function routesBook(app: Application) {
   /**
    * @swagger
    * /api/books:

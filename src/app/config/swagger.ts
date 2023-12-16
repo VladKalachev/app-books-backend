@@ -1,6 +1,7 @@
 import { HOST } from './app';
+import type swaggerJsdoc from 'swagger-jsdoc';
 
-export default {
+const swaggerConfig: swaggerJsdoc.Options = {
   definition: {
     openapi: '3.0.0',
     info: {
@@ -13,6 +14,25 @@ export default {
         url: HOST,
       },
     ],
+    // components: {
+    //   securitySchemes: {
+    //     bearerAuth: {
+    //       type: 'http',
+    //       scheme: 'bearer',
+    //     },
+    //   },
+    //   schemas: {
+    //     UpdateEmployeeRequest: {
+    //       type: 'object',
+    //       properties: {
+    //         id: 0,
+    //         name: 'string',
+    //       },
+    //     },
+    //   },
+    // },
   },
   apis: ['./app/routes/*.ts'],
 };
+
+export default swaggerConfig;

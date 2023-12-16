@@ -6,6 +6,7 @@
   "scripts": {
     "server": "nodemon src/index.ts",
     "script": "ts-node",
+    "build": "tsoa spec-and-routes && tsc",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
@@ -23,7 +24,8 @@
     "sequelize": "^6.34.0",
     "socket.io": "^4.7.2",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "tsoa": "^5.1.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
