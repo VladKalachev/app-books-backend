@@ -17,7 +17,7 @@ export default function routesUser(app: Application) {
    *       500:
    *         description: Server Error
    */
-  app.get('/api/user/registration', userController.registration);
+  app.post('/api/user/registration', userController.registration);
 
   /**
    * @swagger
@@ -42,8 +42,8 @@ export default function routesUser(app: Application) {
    */
   app.post('/api/user/logout', userController.logout);
 
-  app.get('/api/activate/:link');
+  app.get('/api/activate/:link', userController.activate);
   app.get('/api/user/refresh', userController.refresh);
 
-  app.get('/api/users');
+  app.get('/api/users', userController.getUsers);
 }
