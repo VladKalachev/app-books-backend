@@ -10,6 +10,7 @@ import registerRoutes from './app/routes/index';
 import registerMiddleware from './app/middleware/index';
 
 import '../src/app/globals/sequelize';
+import './app/models/test.model';
 
 const app: Application = express();
 

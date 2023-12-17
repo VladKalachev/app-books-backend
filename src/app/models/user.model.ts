@@ -11,11 +11,6 @@ class User extends Model {
 
 User.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -36,8 +31,8 @@ User.init(
     },
   },
   {
-    tableName: 'users',
     sequelize,
+    tableName: 'users',
   },
 );
 

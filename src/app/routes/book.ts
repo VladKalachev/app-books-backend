@@ -1,6 +1,5 @@
 import bookController from '../controllers/book.controlle';
 import type { Application } from 'express';
-import { Route } from 'tsoa';
 
 export default function routesBook(app: Application) {
   /**

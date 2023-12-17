@@ -42,5 +42,8 @@ export default function routesUser(app: Application) {
    */
   app.post('/api/user/logout', userController.logout);
 
-  app.post('/api/user/refresh', userController.refresh);
+  app.get('/api/activate/:link');
+  app.get('/api/user/refresh', userController.refresh);
+
+  app.get('/api/users');
 }
