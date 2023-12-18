@@ -1,5 +1,6 @@
 import bookController from '../controllers/book.controlle';
 import type { Application } from 'express';
+import auth from '../middleware/auth';
 
 export default function routesBook(app: Application) {
   /**
@@ -14,7 +15,7 @@ export default function routesBook(app: Application) {
    *       200:
    *         description: Успешное получение списка книг
    */
-  app.get('/api/books', bookController.all);
+  app.get('/api/books', auth, bookController.all);
 
   /**
    * @swagger
@@ -35,7 +36,7 @@ export default function routesBook(app: Application) {
    *       500:
    *        description: Ошибка на сервере
    */
-  app.get('/api/books/:id', bookController.one);
+  app.get('/api/books/:id', auth, bookController.one);
 
   /**
    * @swagger
@@ -54,7 +55,7 @@ export default function routesBook(app: Application) {
    *       200:
    *         description: Добавление книги
    */
-  app.post('/api/books/create', bookController.create);
+  app.post('/api/books/create', auth, bookController.create);
 
   /**
    * @swagger
@@ -73,7 +74,7 @@ export default function routesBook(app: Application) {
    *       200:
    *         description: Успешное удаление книги
    */
-  app.delete('/api/books/:id', bookController.remove);
+  app.delete('/api/books/:id', auth, bookController.remove);
 
   /**
    * @swagger
@@ -92,5 +93,5 @@ export default function routesBook(app: Application) {
    *       200:
    *         description: Успешное обновление книги
    */
-  app.put('/api/books/:id', bookController.update);
+  app.put('/api/books/:id', auth, bookController.update);
 }

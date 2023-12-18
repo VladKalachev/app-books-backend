@@ -2,6 +2,7 @@ import userController from '../controllers/user.controller';
 
 import type { Application } from 'express';
 import { body } from 'express-validator';
+import auth from '../middleware/auth';
 
 export default function routesUser(app: Application) {
   /**
@@ -51,5 +52,5 @@ export default function routesUser(app: Application) {
   app.get('/api/activate/:link', userController.activate);
   app.get('/api/user/refresh', userController.refresh);
 
-  app.get('/api/users', userController.getUsers);
+  app.get('/api/users', auth, userController.getUsers);
 }

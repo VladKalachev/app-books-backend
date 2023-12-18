@@ -11,7 +11,7 @@ class BookController extends Controller {
       const books = await bookService.all();
       res.json(books);
     } catch (e) {
-      res.json(e);
+      next(e);
     }
   }
 
@@ -47,66 +47,72 @@ class BookController extends Controller {
   }
 
   async one(req: Request, res: Response, next: NextFunction) {
-    const fromId = parseInt(req.params.id ?? '0');
     try {
+      const fromId = parseInt(req.params.id ?? '0');
       const book = await bookService.one(fromId);
       res.json(book);
     } catch (e) {
-      res.json(e);
+      next(e);
     }
   }
 
   async remove(req: Request, res: Response, next: NextFunction) {
-    const fromId = parseInt(req.params.id ?? '0');
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      const book = await BookModel.findOne({
+        where: {
+          id: fromId,
+        },
+      });
 
-    const book = await BookModel.findOne({
-      where: {
-        id: fromId,
-      },
-    });
-
-    await book?.destroy();
-    res.end(JSON.stringify(true));
+      await book?.destroy();
+      res.end(JSON.stringify(true));
+    } catch (e) {
+      next(e);
+    }
   }
 
   async update(req: Request, res: Response, next: NextFunction) {
-    const fromId = parseInt(req.params.id ?? '0');
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      const book = await BookModel.findOne({
+        where: {
+          id: fromId,
+        },
+      });
 
-    const book = await BookModel.findOne({
-      where: {
-        id: fromId,
-      },
-    });
+      const {
+        title,
+        description,
+        genre,
+        fullName,
+        image,
+        year,
+        numberPages,
+        publishing,
+        notes,
+        read,
+        buy,
+      } = req.body;
 
-    const {
-      title,
-      description,
-      genre,
-      fullName,
-      image,
-      year,
-      numberPages,
-      publishing,
-      notes,
-      read,
-      buy,
-    } = req.body;
+      await book?.update({
+        title,
+        description,
+        genre,
+        fullName,
+        image,
+        year,
+        numberPages,
+        publishing,
+        notes,
+        read,
+        buy,
+      });
 
-    await book?.update({
-      title,
-      description,
-      genre,
-      fullName,
-      image,
-      year,
-      numberPages,
-      publishing,
-      notes,
-      read,
-      buy,
-    });
-
-    res.end(JSON.stringify(book));
+      res.end(JSON.stringify(book));
+    } catch (e) {
+      next(e);
+    }
   }
 }
 
