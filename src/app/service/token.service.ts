@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import tokenModel from '../models/token.model';
-import type UserModel from '../models/user.model';
 import type UserDto from '../dtos/user.dto';
 
 class TokenService {
@@ -29,6 +28,29 @@ class TokenService {
 
   async removeToken(refreshToken: string) {
     const tokenData = await tokenModel.destroy({ where: { refreshToken } });
+    return tokenData;
+  }
+
+  validateAccessToken(token: string) {
+    try {
+      const userData = jwt.verify(token, process?.env?.JWT_ACCESS_SECRET || '');
+      return userData;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  validateRefreshToken(token: string) {
+    try {
+      const userData = jwt.verify(token, process?.env?.JWT_REFRESH_SECRET || '');
+      return userData;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async findToken(refreshToken: string) {
+    const tokenData = await tokenModel.findOne({ where: { refreshToken } });
     return tokenData;
   }
 }
