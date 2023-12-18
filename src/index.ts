@@ -11,6 +11,7 @@ import registerMiddleware from './app/middleware/index';
 
 import '../src/app/globals/sequelize';
 import './app/models/test.model';
+import errorParser from './app/middleware/error-parser';
 
 const app: Application = express();
 
@@ -27,3 +28,5 @@ app.listen(PORT, () => {
 registerMiddleware(app);
 registerSwagger(app);
 registerRoutes(app);
+
+app.use(errorParser);
