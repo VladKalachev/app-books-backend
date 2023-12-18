@@ -1,24 +1,24 @@
-import User from '../models/user.model';
+import UserModel from '../models/user.model';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import mailService from './mail.service';
 import tokenService from './token.service';
 import UserDto from '../dtos/user.dto';
 import process from 'process';
-import userModel from '../models/user.model';
+import ApiError from '../globals/api-error';
 
 class UserService {
   async registration(email: string, password: string) {
-    const candidate: User[] = await User.findAll({ where: { email } });
+    const candidate: UserModel[] = await UserModel.findAll({ where: { email } });
 
     if (candidate.length > 0) {
-      throw new Error(`Пользователь с почтовым адремос ${email} уже существует!`);
+      throw ApiError.BadRequest(`Пользователь с почтовым адремос ${email} уже существует!`);
     }
 
     const hashPassword = await bcrypt.hash(password, 3);
     const activationLink: string = uuidv4();
 
-    const user = await User.create({
+    const user = await UserModel.create({
       email,
       password: hashPassword,
       activationLink,
@@ -36,9 +36,9 @@ class UserService {
   }
 
   async activete(activationLink: string) {
-    const user = await userModel.findOne({ where: { activationLink } });
+    const user = await UserModel.findOne({ where: { activationLink } });
     if (!user) {
-      throw new Error('Неккоректная ссылка активации');
+      throw ApiError.BadRequest('Неккоректная ссылка активации');
     }
     user.isActivated = true;
     await user.save();

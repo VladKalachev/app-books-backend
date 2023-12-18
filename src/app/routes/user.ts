@@ -1,6 +1,7 @@
 import userController from '../controllers/user.controller';
 
 import type { Application } from 'express';
+import { body } from 'express-validator';
 
 export default function routesUser(app: Application) {
   /**
@@ -17,7 +18,12 @@ export default function routesUser(app: Application) {
    *       500:
    *         description: Server Error
    */
-  app.post('/api/user/registration', userController.registration);
+  app.post(
+    '/api/user/registration',
+    body('email').isEmail(),
+    body('password').isLength({ min: 3, max: 20 }),
+    userController.registration,
+  );
 
   /**
    * @swagger

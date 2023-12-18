@@ -1,9 +1,15 @@
 import type { Request, Response, NextFunction } from 'express';
 import userService from '../service/user.service';
-
+import { validationResult } from 'express-validator';
+import ApiError from '../globals/api-error';
 class UserController {
   async registration(req: Request, res: Response, next: NextFunction) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        next(ApiError.BadRequest('Ошибка при валидации', errors.array()));
+        return;
+      }
       const { email, password } = req.body;
       console.log('req.body', req.body);
       const userData = await userService.registration(email as string, password as string);
@@ -13,7 +19,7 @@ class UserController {
       });
       return res.json(userData);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -22,7 +28,7 @@ class UserController {
       console.log('login');
       res.end(true);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -31,7 +37,7 @@ class UserController {
       console.log('logout');
       res.end(true);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -41,7 +47,7 @@ class UserController {
       await userService.activete(activationLink);
       res.redirect(process?.env?.CLIENT_URL || '');
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -50,7 +56,7 @@ class UserController {
       console.log('refresh');
       res.end(true);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 
@@ -58,7 +64,7 @@ class UserController {
     try {
       res.json([1, 2, 3]);
     } catch (e) {
-      console.log(e);
+      next(e);
     }
   }
 }
