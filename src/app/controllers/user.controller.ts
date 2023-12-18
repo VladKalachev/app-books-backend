@@ -11,7 +11,6 @@ class UserController {
         return;
       }
       const { email, password } = req.body;
-      console.log('req.body', req.body);
       const userData = await userService.registration(email as string, password as string);
       res.cookie('refreshToken', userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -39,8 +38,10 @@ class UserController {
 
   async logout(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log('logout');
-      res.end(true);
+      const { refreshToken } = req.cookies;
+      const token = await userService.logout(refreshToken as string);
+      res.clearCookie('refreshToken');
+      return res.status(200).json(token);
     } catch (e) {
       next(e);
     }
