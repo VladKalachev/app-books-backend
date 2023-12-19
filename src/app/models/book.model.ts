@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../globals/sequelize';
+import User from './user.model';
 
 const BookModel = sequelize.define('Book', {
   id: {
@@ -52,5 +53,8 @@ const BookModel = sequelize.define('Book', {
     allowNull: false,
   },
 });
+
+User.hasMany(BookModel);
+BookModel.belongsTo(User);
 
 export default BookModel;

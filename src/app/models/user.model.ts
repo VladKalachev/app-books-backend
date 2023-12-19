@@ -37,7 +37,4 @@ User.init(
   },
 );
 
-User.hasMany(Book);
-Book.belongsTo(User);
-
 export default User;
