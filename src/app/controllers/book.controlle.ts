@@ -7,6 +7,7 @@ import ApiError from '../globals/api-error';
 import UserModel from '../models/user.model';
 import UserDto from '../dtos/user.dto';
 import BookDto from '../dtos/book.dto';
+import userService from '../service/user.service';
 
 @Route('book')
 class BookController extends Controller {
@@ -27,41 +28,46 @@ class BookController extends Controller {
   }
 
   async create(req: Request, res: Response, next: NextFunction) {
-    const {
-      title,
-      description,
-      genre,
-      fullName,
-      image,
-      year,
-      numberPages,
-      publishing,
-      notes,
-      read,
-      buy,
-    } = req.body;
+    try {
+      const {
+        title,
+        description,
+        genre,
+        fullName,
+        image,
+        year,
+        numberPages,
+        publishing,
+        notes,
+        read,
+        buy,
+      } = req.body;
 
-    const { refreshToken } = req.cookies;
-    const userData: any = tokenService.validateRefreshToken(refreshToken);
-    if (!userData) {
-      throw ApiError.UnauthorizeError();
+      const { refreshToken } = req.cookies;
+      const userData: any = tokenService.validateRefreshToken(refreshToken);
+      if (!userData) {
+        throw ApiError.UnauthorizeError();
+      }
+
+      const books = await BookModel.create({
+        title,
+        description,
+        genre,
+        fullName,
+        image,
+        year,
+        numberPages,
+        publishing,
+        notes,
+        read,
+        buy,
+        UserId: userData.id,
+      });
+      res.end(JSON.stringify(books));
+      return res.json(userData);
+    } catch (e) {
+      next(e);
     }
-
-    const books = await BookModel.create({
-      title,
-      description,
-      genre,
-      fullName,
-      image,
-      year,
-      numberPages,
-      publishing,
-      notes,
-      read,
-      buy,
-      UserId: userData.id,
-    });
-    res.end(JSON.stringify(books));
   }
 
   async one(req: Request, res: Response, next: NextFunction) {
