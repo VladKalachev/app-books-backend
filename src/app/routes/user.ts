@@ -28,7 +28,7 @@ export default function routesUser(app: Application) {
 
   /**
    * @swagger
-   * /api/users/check:
+   * /api/user/login:
    *   post:
    *     summary: Логин пользователя
    *     description: Логин пользователя
