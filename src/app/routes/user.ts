@@ -40,7 +40,12 @@ export default function routesUser(app: Application) {
    *       500:
    *         description: Server Error
    */
-  app.post('/api/user/login', userController.login);
+  app.post(
+    '/api/user/login',
+    body('email').isEmail(),
+    body('password').isLength({ min: 3, max: 20 }),
+    userController.login,
+  );
 
   /**
    * @openapi
