@@ -75,7 +75,7 @@ class UserService {
       throw ApiError.UnauthorizeError();
     }
 
-    const user: any = UserModel.findOne({ where: { id: userData?.id } });
+    const user: any = await UserModel.findOne({ where: { id: userData?.id } });
     const userDto = new UserDto(user);
     const tokens = tokenService.generateТokens({ ...userDto });
     await tokenService.saveToken(userDto.id, tokens.refreshToken);
