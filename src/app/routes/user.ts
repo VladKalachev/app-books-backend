@@ -58,4 +58,6 @@ export default function routesUser(app: Application) {
   app.get('/api/user/refresh', userController.refresh);
 
   app.get('/api/users', auth, userController.getUsers);
+
+  app.get('/api/usersWithBooks', auth, userController.getUsersWithBooks);
 }

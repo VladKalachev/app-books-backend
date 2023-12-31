@@ -2,6 +2,9 @@ import type { Request, Response, NextFunction } from 'express';
 import userService from '../service/user.service';
 import { validationResult } from 'express-validator';
 import ApiError from '../globals/api-error';
+import UserDto from '../dtos/user.dto';
+import UserWithBook from '../dtos/userWithBook.dto';
+
 class UserController {
   async registration(req: Request, res: Response, next: NextFunction) {
     try {
@@ -80,7 +83,18 @@ class UserController {
   async getUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const users = await userService.getAllUsers();
-      res.json(users);
+      const usersData = users.map((user) => new UserDto(user));
+      res.json(usersData);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async getUsersWithBooks(req: Request, res: Response, next: NextFunction) {
+    try {
+      const users = await userService.getAllUsersWithBooks();
+      const usersDataWithBooks = users.map((user) => new UserWithBook(user));
+      res.json(usersDataWithBooks);
     } catch (e) {
       next(e);
     }
