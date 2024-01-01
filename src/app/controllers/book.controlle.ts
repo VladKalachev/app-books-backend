@@ -44,10 +44,14 @@ class BookController extends Controller {
         buy,
       } = req.body;
 
-      // @ts-expect-error
-      const { image } = req.files;
-      const fileName = uuidv4() + '.jpg';
-      image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
+      let fileName = '';
+
+      if (req.files) {
+        // @ts-expect-error
+        const { image } = req.files;
+        fileName = uuidv4() + '.jpg';
+        image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
+      }
 
       const { refreshToken } = req.cookies;
       const userData: any = tokenService.validateRefreshToken(refreshToken);

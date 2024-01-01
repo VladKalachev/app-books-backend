@@ -42,7 +42,7 @@ const BookModel = sequelize.define('Book', {
   },
   notes: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   read: {
     type: DataTypes.BOOLEAN,
