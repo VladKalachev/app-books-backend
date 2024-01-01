@@ -8,6 +8,8 @@ import UserModel from '../models/user.model';
 import UserDto from '../dtos/user.dto';
 import BookDto from '../dtos/book.dto';
 import userService from '../service/user.service';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
 
 @Route('book')
 class BookController extends Controller {
@@ -34,7 +36,6 @@ class BookController extends Controller {
         description,
         genre,
         fullName,
-        image,
         year,
         numberPages,
         publishing,
@@ -42,6 +43,11 @@ class BookController extends Controller {
         read,
         buy,
       } = req.body;
+
+      // @ts-expect-error
+      const { image } = req.files;
+      const fileName = uuidv4() + '.jpg';
+      image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
 
       const { refreshToken } = req.cookies;
       const userData: any = tokenService.validateRefreshToken(refreshToken);
@@ -54,7 +60,7 @@ class BookController extends Controller {
         description,
         genre,
         fullName,
-        image,
+        image: fileName,
         year,
         numberPages,
         publishing,
