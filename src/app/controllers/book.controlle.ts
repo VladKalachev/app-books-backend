@@ -10,6 +10,7 @@ import BookDto from '../dtos/book.dto';
 import userService from '../service/user.service';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
+import fs from 'fs';
 
 @Route('book')
 class BookController extends Controller {
@@ -44,9 +45,12 @@ class BookController extends Controller {
         buy,
       } = req.body;
 
+      console.log('lol', typeof year, year);
+
       let fileName = '';
 
       if (req.files) {
+        console.log(req.body, req.files);
         // @ts-expect-error
         const { image } = req.files;
         fileName = uuidv4() + '.jpg';
@@ -65,8 +69,8 @@ class BookController extends Controller {
         genre,
         fullName,
         image: fileName,
-        year,
-        numberPages,
+        year: Number(year.split('"')[1]),
+        numberPages: Number(numberPages.split('"')[1]),
         publishing,
         notes,
         read,
@@ -99,6 +103,18 @@ class BookController extends Controller {
         },
       });
 
+      if (book) {
+        // @ts-expect-error
+        const fileName = book.image;
+        if (fs.existsSync(path.join(__dirname, '..', '..', '..', 'upload', fileName))) {
+          fs.unlink(path.join(__dirname, '..', '..', '..', 'upload', fileName), (err) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
+      }
+
       await book?.destroy();
       res.end(JSON.stringify(true));
     } catch (e) {
@@ -129,14 +145,25 @@ class BookController extends Controller {
         buy,
       } = req.body;
 
+      let fileName = image;
+
+      if (req.files) {
+        // @ts-expect-error
+        const { image } = req.files;
+        if (typeof image !== 'string') {
+          fileName = uuidv4() + '.jpg';
+          image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
+        }
+      }
+
       await book?.update({
         title,
         description,
         genre,
         fullName,
-        image,
-        year,
-        numberPages,
+        image: fileName,
+        year: Number(year.split('"')[1]),
+        numberPages: Number(numberPages.split('"')[1]),
         publishing,
         notes,
         read,
