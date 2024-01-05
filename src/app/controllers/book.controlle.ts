@@ -45,12 +45,9 @@ class BookController extends Controller {
         buy,
       } = req.body;
 
-      console.log('lol', typeof year, year);
-
       let fileName = '';
 
       if (req.files) {
-        console.log(req.body, req.files);
         // @ts-expect-error
         const { image } = req.files;
         fileName = uuidv4() + '.jpg';
@@ -144,15 +141,6 @@ class BookController extends Controller {
         read,
         buy,
       } = req.body;
-
-      console.log('year', typeof year, year, Number(year));
-      console.log(
-        'year',
-        typeof numberPages,
-        numberPages,
-        Number(numberPages),
-        numberPages.split('"').length > 1 ? Number(numberPages.split('"')[1]) : numberPages,
-      );
 
       let fileName = image;
 
