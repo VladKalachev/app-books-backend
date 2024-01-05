@@ -66,8 +66,9 @@ class BookController extends Controller {
         genre,
         fullName,
         image: fileName,
-        year: Number(year.split('"')[1]),
-        numberPages: Number(numberPages.split('"')[1]),
+        year: year.split('"').length > 1 ? Number(year.split('"')[1]) : year,
+        numberPages:
+          numberPages.split('"').length > 1 ? Number(numberPages.split('"')[1]) : numberPages,
         publishing,
         notes,
         read,
