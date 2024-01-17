@@ -1,7 +1,9 @@
+import type { Application } from 'express';
 import routesUser from './user';
 import routesBook from './book';
-import type { Application } from 'express';
 import routesTest from './test';
+import routesGenre from './genre';
+import routesAuthor from './author';
 
 export default function registerRoutes(app: Application) {
   /**
@@ -21,4 +23,7 @@ export default function registerRoutes(app: Application) {
   routesBook(app);
 
   routesTest(app);
+
+  routesAuthor(app);
+  routesGenre(app);
 }

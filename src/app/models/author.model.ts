@@ -1,6 +1,11 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
 import BookModel from './book.model';
+
+export class Author extends Model {
+  declare id: number;
+  declare fullName: string;
+}
 
 const AuthorModel = sequelize.define('Author', {
   id: {
@@ -14,7 +19,10 @@ const AuthorModel = sequelize.define('Author', {
   },
 });
 
-AuthorModel.hasMany(BookModel);
-BookModel.belongsTo(AuthorModel);
+// AuthorModel.hasMany(BookModel);
+// BookModel.belongsTo(AuthorModel);
+//
+BookModel.hasMany(AuthorModel);
+AuthorModel.belongsTo(BookModel);
 
 export default AuthorModel;
