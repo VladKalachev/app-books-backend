@@ -102,14 +102,8 @@ class BookController extends Controller {
 
       if (book) {
         // @ts-expect-error
-        const fileName = book.image;
-        if (fs.existsSync(path.join(__dirname, '..', '..', '..', 'upload', fileName))) {
-          fs.unlink(path.join(__dirname, '..', '..', '..', 'upload', fileName), (err) => {
-            if (err) {
-              console.log(err);
-            }
-          });
-        }
+        const fileName: string = book.image;
+        await FileService.remove(fileName);
       }
 
       await book?.destroy();
@@ -148,8 +142,7 @@ class BookController extends Controller {
         // @ts-expect-error
         const { image } = req.files;
         if (typeof image !== 'string') {
-          fileName = uuidv4() + '.jpg';
-          image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
+          fileName = await FileService.create(image);
         }
       }
 
