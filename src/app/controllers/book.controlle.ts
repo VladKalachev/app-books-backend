@@ -45,7 +45,7 @@ class BookController extends Controller {
         buy,
       } = req.body;
 
-      let fileName = '';
+      let fileName = 'default.png';
 
       if (req.files) {
         // @ts-expect-error
