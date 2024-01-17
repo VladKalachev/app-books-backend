@@ -101,7 +101,6 @@ class BookController extends Controller {
       });
 
       if (book) {
-        // @ts-expect-error
         const fileName: string = book.image;
         await FileService.remove(fileName);
       }

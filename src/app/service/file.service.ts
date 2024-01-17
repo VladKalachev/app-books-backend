@@ -10,12 +10,14 @@ class FileService {
   }
 
   async remove(fileName: string) {
-    if (fs.existsSync(path.join(__dirname, '..', '..', '..', 'upload', fileName))) {
-      fs.unlink(path.join(__dirname, '..', '..', '..', 'upload', fileName), (err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
+    if (fileName !== 'default.png') {
+      if (fs.existsSync(path.join(__dirname, '..', '..', '..', 'upload', fileName))) {
+        fs.unlink(path.join(__dirname, '..', '..', '..', 'upload', fileName), (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      }
     }
   }
 }
