@@ -1,13 +1,13 @@
 import { type Request, type Response, type NextFunction } from 'express';
-import bookService from '../service/book.service';
+import BookService from '../service/book.service';
 import BookModel from '../models/book.model';
-import { Get, Route, Controller } from 'tsoa';
-import tokenService from '../service/token.service';
+
+import TokenService from '../service/token.service';
+import FileService from '../service/file.service';
 import ApiError from '../globals/api-error';
-import UserModel from '../models/user.model';
-import UserDto from '../dtos/user.dto';
 import BookDto from '../dtos/book.dto';
-import userService from '../service/user.service';
+
+import { Get, Route, Controller } from 'tsoa';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import fs from 'fs';
@@ -18,11 +18,11 @@ class BookController extends Controller {
   async all(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const { refreshToken } = req.cookies;
-      const userData: any = tokenService.validateRefreshToken(refreshToken);
+      const userData: any = TokenService.validateRefreshToken(refreshToken);
       if (!userData) {
         throw ApiError.UnauthorizeError();
       }
-      const books = await bookService.getAllBooksByUserId(userData.id);
+      const books = await BookService.getAllBooksByUserId(userData.id);
       const booksData = books.map((book) => new BookDto(book));
       res.json(booksData);
     } catch (e) {
@@ -50,12 +50,11 @@ class BookController extends Controller {
       if (req.files) {
         // @ts-expect-error
         const { image } = req.files;
-        fileName = uuidv4() + '.jpg';
-        image.mv(path.resolve(__dirname, '..', '..', '..', 'upload', fileName));
+        fileName = await FileService.create(image);
       }
 
       const { refreshToken } = req.cookies;
-      const userData: any = tokenService.validateRefreshToken(refreshToken);
+      const userData: any = TokenService.validateRefreshToken(refreshToken);
       if (!userData) {
         throw ApiError.UnauthorizeError();
       }
@@ -85,7 +84,7 @@ class BookController extends Controller {
   async one(req: Request, res: Response, next: NextFunction) {
     try {
       const fromId = parseInt(req.params.id ?? '0');
-      const book = await bookService.one(fromId);
+      const book = await BookService.one(fromId);
       res.json(book);
     } catch (e) {
       next(e);
