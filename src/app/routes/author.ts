@@ -1,6 +1,7 @@
 import type { Application } from 'express';
 import authorController from '../controllers/author.controller';
 import auth from '../middleware/auth';
+import bookController from '../controllers/book.controlle';
 
 export default function routesAuthor(app: Application) {
   /**
@@ -14,7 +15,17 @@ export default function routesAuthor(app: Application) {
   app.post('/api/authors/create', auth, authorController.create);
 
   /**
+   * Получение автора по id
+   */
+  app.get('/api/authors/:id', auth, authorController.one);
+
+  /**
    * Удаление автора по id
    */
   app.delete('/api/authors/:id', auth, authorController.remove);
+
+  /**
+   * Редактирование автора по id
+   */
+  app.put('/api/authors/:id', auth, authorController.update);
 }

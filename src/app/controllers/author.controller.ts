@@ -2,6 +2,9 @@ import type { NextFunction, Request, Response } from 'express';
 
 import AuthorService from '../service/author.service';
 import AuthorDto from '../dtos/author.dto';
+import BookModel from '../models/book.model';
+import FileService from '../service/file.service';
+import AuthorModel from '../models/author.model';
 
 class AuthorController {
   async all(req: Request, res: Response, next: NextFunction) {
@@ -24,11 +27,44 @@ class AuthorController {
     }
   }
 
+  async one(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      const author = await AuthorService.one(fromId);
+      res.json(author);
+    } catch (e) {
+      next(e);
+    }
+  }
+
   async remove(req: Request, res: Response, next: NextFunction) {
     try {
       const fromId = parseInt(req.params.id ?? '0');
       await AuthorService.remove(fromId);
       res.end(JSON.stringify(true));
+    } catch (e) {
+      next(e);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      // TODO
+      // Вынести в сервис
+      const author = await AuthorModel.findOne({
+        where: {
+          id: fromId,
+        },
+      });
+
+      const { fullName } = req.body;
+
+      await author?.update({
+        fullName,
+      });
+
+      res.end(JSON.stringify(author));
     } catch (e) {
       next(e);
     }
