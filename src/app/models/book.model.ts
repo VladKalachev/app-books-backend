@@ -2,6 +2,8 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
 import User from './user.model';
 import AuthorModel from './author.model';
+import Genre from './genre.model';
+import Publishing from './publishing.model';
 
 export class Books extends Model {
   declare id: number;
@@ -81,5 +83,11 @@ Books.belongsTo(User);
 
 AuthorModel.hasMany(Books);
 Books.belongsTo(AuthorModel);
+
+Genre.hasMany(Books);
+Books.belongsTo(Genre);
+
+Publishing.hasMany(Books);
+Books.belongsTo(Publishing);
 
 export default Books;
