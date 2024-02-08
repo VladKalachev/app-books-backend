@@ -6,7 +6,7 @@ import tokenService from './token.service';
 import UserDto from '../dtos/user.dto';
 import process from 'process';
 import ApiError from '../globals/api-error';
-import BookModel from '../models/book.model';
+import Books from '../models/book.model';
 
 class UserService {
   async registration(email: string, password: string) {
@@ -91,7 +91,7 @@ class UserService {
 
   async getAllUsersWithBooks() {
     const userWithBooks = await UserModel.findAll({
-      include: BookModel,
+      include: [{ model: Books }],
     });
     return userWithBooks;
   }

@@ -2,9 +2,8 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
 import User from './user.model';
 import AuthorModel from './author.model';
-// import Author from './author.model';
 
-export class BookModel extends Model {
+export class Books extends Model {
   declare id: number;
   declare title: string;
   declare description: string;
@@ -19,7 +18,7 @@ export class BookModel extends Model {
   declare buy: boolean;
 }
 
-BookModel.init(
+Books.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -77,10 +76,10 @@ BookModel.init(
   },
 );
 
-User.hasMany(BookModel);
-BookModel.belongsTo(User);
+User.hasMany(Books);
+Books.belongsTo(User);
 
-AuthorModel.hasMany(BookModel);
-BookModel.belongsTo(AuthorModel);
+AuthorModel.hasMany(Books);
+Books.belongsTo(AuthorModel);
 
-export default BookModel;
+export default Books;

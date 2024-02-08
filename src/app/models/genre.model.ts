@@ -1,20 +1,27 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
-import BookModel from './book.model';
 
-const GenreModel = sequelize.define('Genre', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+export class Genre extends Model {
+  declare id: number;
+  declare title: string;
+}
+
+Genre.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
+  {
+    sequelize,
+    tableName: 'genres',
   },
-});
+);
 
-BookModel.hasMany(GenreModel);
-GenreModel.belongsTo(BookModel);
-
-export default GenreModel;
+export default Genre;
