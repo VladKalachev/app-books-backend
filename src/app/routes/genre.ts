@@ -16,10 +16,10 @@ export default function routesGenre(app: Application) {
   /**
    * Получение Жанра по id
    */
-  app.get('/api/authors/:id', auth, genreController.one);
+  app.get('/api/genres/:id', auth, genreController.one);
 
   /**
    * Удаление Жанра по id
    */
-  app.delete('/api/authors/:id', auth, genreController.remove);
+  app.delete('/api/genres/:id', auth, genreController.remove);
 }
