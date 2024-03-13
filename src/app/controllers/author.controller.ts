@@ -48,20 +48,8 @@ class AuthorController {
   async update(req: Request, res: Response, next: NextFunction) {
     try {
       const fromId = parseInt(req.params.id ?? '0');
-      // TODO
-      // Вынести в сервис
-      const author = await AuthorModel.findOne({
-        where: {
-          id: fromId,
-        },
-      });
-
       const { fullName } = req.body;
-
-      await author?.update({
-        fullName,
-      });
-
+      const author = await AuthorService.update(fromId, fullName as string);
       res.end(JSON.stringify(author));
     } catch (e) {
       next(e);

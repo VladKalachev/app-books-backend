@@ -26,6 +26,20 @@ class AuthorService {
       },
     });
   }
+
+  async update(id: number, fullName: string) {
+    const author = await AuthorModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await author?.update({
+      fullName,
+    });
+
+    return author;
+  }
 }
 
 export default new AuthorService();
