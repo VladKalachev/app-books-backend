@@ -1,4 +1,3 @@
-import BookModel from '../models/book.model';
 import AuthorModel from '../models/author.model';
 
 class AuthorService {

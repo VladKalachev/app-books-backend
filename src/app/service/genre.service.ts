@@ -5,9 +5,8 @@ class GenreService {
     return await GenreModel.findAll();
   }
 
-  async getAllBooksByUserId(userId: number) {
-    const books = await GenreModel.findAll({ where: { userId } });
-    return books;
+  async create(title: string) {
+    return await GenreModel.create({ title });
   }
 
   async one(id: number) {
@@ -16,6 +15,16 @@ class GenreService {
         id,
       },
     });
+  }
+
+  async remove(id: number) {
+    const author = await GenreModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await author?.destroy();
   }
 }
 

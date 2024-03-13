@@ -2,8 +2,6 @@ import type { NextFunction, Request, Response } from 'express';
 
 import AuthorService from '../service/author.service';
 import AuthorDto from '../dtos/author.dto';
-import BookModel from '../models/book.model';
-import FileService from '../service/file.service';
 import AuthorModel from '../models/author.model';
 
 class AuthorController {

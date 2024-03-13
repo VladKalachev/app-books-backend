@@ -7,4 +7,19 @@ export default function routesGenre(app: Application) {
    * Получение всего списка жанра книг
    */
   app.get('/api/genres', auth, genreController.all);
+
+  /**
+   * Добавление нового Жанра
+   */
+  app.post('/api/genres/create', auth, genreController.create);
+
+  /**
+   * Получение Жанра по id
+   */
+  app.get('/api/authors/:id', auth, genreController.one);
+
+  /**
+   * Удаление Жанра по id
+   */
+  app.delete('/api/authors/:id', auth, genreController.remove);
 }

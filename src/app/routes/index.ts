@@ -22,8 +22,27 @@ export default function registerRoutes(app: Application) {
    */
   routesBook(app);
 
+  /**
+   * @swagger
+   * tags:
+   *   name: Test
+   *   description: Тестовый
+   */
   routesTest(app);
 
+  /**
+   * @swagger
+   * tags:
+   *   name: Author
+   *   description: Авторы
+   */
   routesAuthor(app);
+
+  /**
+   * @swagger
+   * tags:
+   *   name: Genre
+   *   description: Жанр
+   */
   routesGenre(app);
 }
