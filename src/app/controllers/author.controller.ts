@@ -2,7 +2,6 @@ import type { NextFunction, Request, Response } from 'express';
 
 import AuthorService from '../service/author.service';
 import AuthorDto from '../dtos/author.dto';
-import AuthorModel from '../models/author.model';
 
 class AuthorController {
   async all(req: Request, res: Response, next: NextFunction) {

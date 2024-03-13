@@ -4,6 +4,7 @@ import routesBook from './book';
 import routesTest from './test';
 import routesGenre from './genre';
 import routesAuthor from './author';
+import routesPublishing from './publishing';
 
 export default function registerRoutes(app: Application) {
   /**
@@ -45,4 +46,12 @@ export default function registerRoutes(app: Application) {
    *   description: Жанр
    */
   routesGenre(app);
+
+  /**
+   * @swagger
+   * tags:
+   *   name: Publishing
+   *   description: Издательств
+   */
+  routesPublishing(app);
 }

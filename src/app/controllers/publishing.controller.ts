@@ -1,11 +1,12 @@
 import type { NextFunction, Request, Response } from 'express';
-import GenreService from '../service/genre.service';
+
+import PublishingService from '../service/publishing.service';
 
 class PublishingController {
   async all(req: Request, res: Response, next: NextFunction) {
     try {
-      const genres = await GenreService.all();
-      res.json(genres);
+      const publishing = await PublishingService.all();
+      res.json(publishing);
     } catch (e) {
       next(e);
     }
