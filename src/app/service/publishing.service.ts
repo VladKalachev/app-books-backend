@@ -8,6 +8,14 @@ class PublishingService {
   async create(title: string) {
     return await PublishingModel.create({ title });
   }
+
+  async one(id: number) {
+    return await PublishingModel.findOne({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 export default new PublishingService();
