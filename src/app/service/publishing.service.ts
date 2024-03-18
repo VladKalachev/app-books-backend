@@ -16,6 +16,16 @@ class PublishingService {
       },
     });
   }
+
+  async remove(id: number) {
+    const publishing = await PublishingModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await publishing?.destroy();
+  }
 }
 
 export default new PublishingService();
