@@ -26,6 +26,20 @@ class PublishingService {
 
     await publishing?.destroy();
   }
+
+  async update(id: number, title: string) {
+    const publishing = await PublishingModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await publishing?.update({
+      title,
+    });
+
+    return publishing;
+  }
 }
 
 export default new PublishingService();
