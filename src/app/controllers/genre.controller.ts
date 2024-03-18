@@ -40,6 +40,17 @@ class GenreController {
       next(e);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      const { title } = req.body;
+      const genre = await GenreService.update(fromId, title as string);
+      res.end(JSON.stringify(genre));
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export default new GenreController();

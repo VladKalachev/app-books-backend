@@ -22,4 +22,9 @@ export default function routesGenre(app: Application) {
    * Удаление Жанра по id
    */
   app.delete('/api/genres/:id', auth, genreController.remove);
+
+  /**
+   * Редактирование Жанра по id
+   */
+  app.put('/api/genres/:id', auth, genreController.update);
 }
