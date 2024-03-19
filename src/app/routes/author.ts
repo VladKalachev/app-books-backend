@@ -40,17 +40,65 @@ export default function routesAuthor(app: Application) {
   app.post('/api/authors/create', auth, authorController.create);
 
   /**
-   * Получение автора по id
+   * @swagger
+   * /api/authors/:id:
+   *   get:
+   *     summary: Получение автора по id
+   *     description: Получение автора по id
+   *     tags:
+   *      - Author
+   *     parameters:
+   *            - name: id
+   *              in: path
+   *              description: id у автора
+   *              required: true
+   *     responses:
+   *       200:
+   *         description: Успешное получение Автора по id
+   *       500:
+   *        description: Ошибка на сервере
    */
   app.get('/api/authors/:id', auth, authorController.one);
 
   /**
-   * Удаление автора по id
+   * @swagger
+   * /api/authors/:id:
+   *   delete:
+   *     summary: Удаление автора по id
+   *     description: Удаление автора по id
+   *     tags:
+   *      - Author
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         description: id у автора
+   *         required: true
+   *     responses:
+   *       200:
+   *         description: Успешное удаление Автора
+   *       500:
+   *         description: Ошибка на сервере
    */
   app.delete('/api/authors/:id', auth, authorController.remove);
 
   /**
-   * Редактирование автора по id
+   * @swagger
+   * /api/authors/:id:
+   *  put:
+   *     summary: Редактирование автора по id
+   *     description: Редактирование автора по id
+   *     tags:
+   *      - Author
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         description: id у автора
+   *         required: true
+   *     responses:
+   *       200:
+   *         description: Успешное обновление автора
+   *       500:
+   *         description: Ошибка на сервере
    */
   app.put('/api/authors/:id', auth, authorController.update);
 }
