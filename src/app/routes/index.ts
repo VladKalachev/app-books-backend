@@ -9,7 +9,7 @@ export default function registerRoutes(app: Application) {
   /**
    * @swagger
    * tags:
-   *   name: UserModel
+   *   name: User
    *   description: Пользователи
    */
   routesUser(app);
@@ -34,7 +34,7 @@ export default function registerRoutes(app: Application) {
    * @swagger
    * tags:
    *   name: Genre
-   *   description: Жанр
+   *   description: Жанры
    */
   routesGenre(app);
 

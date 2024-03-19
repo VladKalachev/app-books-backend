@@ -12,7 +12,7 @@ export default function routesUser(app: Application) {
    *     summary: Регистрация нового пользователя
    *     description: Регистрация нового пользователя
    *     tags:
-   *      - UserModel
+   *      - User
    *     responses:
    *       200:
    *         description: Success
@@ -33,7 +33,7 @@ export default function routesUser(app: Application) {
    *     summary: Логин пользователя
    *     description: Логин пользователя
    *     tags:
-   *      - UserModel
+   *      - User
    *     responses:
    *       200:
    *         description: Success
