@@ -42,7 +42,7 @@ httpsServer.listen(PORT_SSL, () => {
 });
 
 registerMiddleware(app);
-registerSwagger(app);
 registerRoutes(app);
+registerSwagger(app);
 
 app.use(errorParser);

@@ -1,4 +1,4 @@
-import { HOST } from './app';
+import { HOST_SSL } from './app';
 import type swaggerJsdoc from 'swagger-jsdoc';
 
 const swaggerConfig: swaggerJsdoc.Options = {
@@ -11,28 +11,21 @@ const swaggerConfig: swaggerJsdoc.Options = {
     },
     servers: [
       {
-        url: HOST,
+        url: HOST_SSL,
       },
     ],
-    // components: {
-    //   securitySchemes: {
-    //     bearerAuth: {
-    //       type: 'http',
-    //       scheme: 'bearer',
-    //     },
-    //   },
-    //   schemas: {
-    //     UpdateEmployeeRequest: {
-    //       type: 'object',
-    //       properties: {
-    //         id: 0,
-    //         name: 'string',
-    //       },
-    //     },
-    //   },
-    // },
+    components: {
+      securitySchemes: {
+        JWT: {
+          description: '',
+          type: 'apiKey',
+          name: 'Authorization',
+          in: 'header',
+        },
+      },
+    },
   },
-  apis: ['./app/routes/*.ts'],
+  apis: ['**/*.ts'],
 };
 
 export default swaggerConfig;

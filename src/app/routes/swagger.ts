@@ -6,5 +6,14 @@ import swaggerUi from 'swagger-ui-express';
 const swaggerSpec = swaggerJsdoc(options);
 
 export default function routesSwagger(app: Application) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec, {
+      swaggerOptions: {
+        docExpansions: 'none',
+        persistAuthorization: true,
+      },
+    }),
+  );
 }
