@@ -1,7 +1,6 @@
 import type { Application } from 'express';
 import authorController from '../controllers/author.controller';
 import auth from '../middleware/auth';
-import bookController from '../controllers/book.controlle';
 
 export default function routesAuthor(app: Application) {
   /**
