@@ -14,16 +14,30 @@ const swaggerConfig: swaggerJsdoc.Options = {
         url: HOST_SSL,
       },
     ],
+    // components: {
+    //   securitySchemes: {
+    //     JWT: {
+    //       description: '',
+    //       type: 'apiKey',
+    //       name: 'Authorization',
+    //       in: 'header',
+    //     },
+    //   },
+    // },
     components: {
       securitySchemes: {
-        JWT: {
-          description: '',
-          type: 'apiKey',
-          name: 'Authorization',
-          in: 'header',
+        bearerAuth: {
+          type: 'https',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
       },
     },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ['**/*.ts'],
 };
