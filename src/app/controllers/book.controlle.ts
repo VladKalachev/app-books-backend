@@ -44,6 +44,7 @@ class BookController extends Controller {
         read,
         buy,
         AuthorId,
+        GenreId,
       } = req.body;
 
       let fileName = 'default.png';
@@ -75,6 +76,7 @@ class BookController extends Controller {
         buy,
         UserId: userData.id,
         AuthorId,
+        GenreId,
       });
       res.end(JSON.stringify(books));
       return res.json(userData);
@@ -136,6 +138,7 @@ class BookController extends Controller {
         read,
         buy,
         AuthorId,
+        GenreId,
       } = req.body;
 
       let fileName = image;
@@ -162,6 +165,7 @@ class BookController extends Controller {
         read,
         buy,
         AuthorId,
+        GenreId,
       });
 
       res.end(JSON.stringify(book));
