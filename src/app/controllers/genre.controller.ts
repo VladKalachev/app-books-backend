@@ -3,8 +3,9 @@ import GenreService from '../service/genre.service';
 
 class GenreController {
   async all(req: Request, res: Response, next: NextFunction) {
+    const query = req.query;
     try {
-      const genres = await GenreService.all();
+      const genres = await GenreService.all(query);
       res.json(genres);
     } catch (e) {
       next(e);

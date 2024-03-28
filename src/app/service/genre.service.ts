@@ -1,8 +1,19 @@
 import GenreModel from '../models/genre.model';
+import { Op } from 'sequelize';
 
 class GenreService {
-  async all() {
-    return await GenreModel.findAll();
+  async all(querys: any) {
+    const { limit, search = '' } = querys;
+    const options = {
+      limit: +limit ? +limit : 10000,
+    };
+
+    const query: any = {};
+    if (search) {
+      query.title = { [Op.substring]: search };
+    }
+
+    return await GenreModel.findAll({ where: query, ...options });
   }
 
   async create(title: string) {

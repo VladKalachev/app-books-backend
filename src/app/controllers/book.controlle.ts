@@ -18,11 +18,13 @@ class BookController extends Controller {
   async all(req: Request, res: Response, next: NextFunction): Promise<any> {
     try {
       const { refreshToken } = req.cookies;
+      const query = req.query;
+
       const userData: any = TokenService.validateRefreshToken(refreshToken);
       if (!userData) {
         throw ApiError.UnauthorizeError();
       }
-      const books = await BookService.getAllBooksByUserId(userData.id);
+      const books = await BookService.getAllBooksByUserId(userData.id, query);
       const booksData = books.map((book) => new BookDto(book));
       res.json(booksData);
     } catch (e) {

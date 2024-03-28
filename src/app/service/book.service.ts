@@ -5,7 +5,10 @@ class BookService {
     return await BookModel.findAll();
   }
 
-  async getAllBooksByUserId(userId: number) {
+  async getAllBooksByUserId(userId: number, query: any) {
+    // const options = {
+    //   limit: query.limit,
+    // };
     const books = await BookModel.findAll({ where: { userId } });
     return books;
   }
