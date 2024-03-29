@@ -1,8 +1,16 @@
 import AuthorModel from '../models/author.model';
+import { Op } from 'sequelize';
 
 class AuthorService {
-  async all() {
-    return await AuthorModel.findAll();
+  async all(querys: any) {
+    const { search = '' } = querys;
+    const query: any = {};
+
+    if (search) {
+      query.title = { [Op.substring]: search };
+    }
+
+    return await AuthorModel.findAll({ where: query });
   }
 
   async create(fullName: string) {

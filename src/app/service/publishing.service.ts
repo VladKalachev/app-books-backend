@@ -10,7 +10,7 @@ class PublishingService {
       query.title = { [Op.substring]: search };
     }
 
-    return await PublishingModel.findAll();
+    return await PublishingModel.findAll({ where: query });
   }
 
   async create(title: string) {

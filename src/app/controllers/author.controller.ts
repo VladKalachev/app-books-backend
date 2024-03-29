@@ -5,8 +5,9 @@ import AuthorDto from '../dtos/author.dto';
 
 class AuthorController {
   async all(req: Request, res: Response, next: NextFunction) {
+    const query = req.query;
     try {
-      const authors = await AuthorService.all();
+      const authors = await AuthorService.all(query);
       const authorsData = authors.map((author) => new AuthorDto(author));
       res.json(authorsData);
     } catch (e) {
