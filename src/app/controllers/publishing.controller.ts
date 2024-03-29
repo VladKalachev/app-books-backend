@@ -4,8 +4,9 @@ import PublishingService from '../service/publishing.service';
 
 class PublishingController {
   async all(req: Request, res: Response, next: NextFunction) {
+    const query = req.query;
     try {
-      const publishing = await PublishingService.all();
+      const publishing = await PublishingService.all(query);
       res.json(publishing);
     } catch (e) {
       next(e);

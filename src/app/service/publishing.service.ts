@@ -1,7 +1,15 @@
 import PublishingModel from '../models/publishing.model';
+import { Op } from 'sequelize';
 
 class PublishingService {
-  async all() {
+  async all(querys: any) {
+    const { search = '' } = querys;
+    const query: any = {};
+
+    if (search) {
+      query.title = { [Op.substring]: search };
+    }
+
     return await PublishingModel.findAll();
   }
 
