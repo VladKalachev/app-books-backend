@@ -9,9 +9,11 @@ class BookService {
   async getAllBooksByUserId(userId: number, querys: any) {
     const { search = '' } = querys;
     const query: any = {};
+
     if (search) {
       query.title = { [Op.substring]: search };
     }
+
     const books = await BookModel.findAll({ where: { userId, ...query } });
     return books;
   }
