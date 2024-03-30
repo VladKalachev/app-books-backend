@@ -7,7 +7,7 @@ class AuthorService {
     const query: any = {};
 
     if (search) {
-      query.title = { [Op.substring]: search };
+      query.fullName = { [Op.substring]: search };
     }
 
     return await AuthorModel.findAll({ where: query });
