@@ -64,13 +64,15 @@ class BookController extends Controller {
         throw ApiError.UnauthorizeError();
       }
 
+      console.log('year =>', typeof read, read);
+
       const books = await BookModel.create({
         title,
         description,
         genre,
         fullName,
         image: fileName,
-        year: year.split('"').length > 1 ? Number(year.split('"')[1]) : year,
+        year: read === 'true' ? year : null,
         numberPages:
           numberPages.split('"').length > 1 ? Number(numberPages.split('"')[1]) : numberPages,
         publishing,

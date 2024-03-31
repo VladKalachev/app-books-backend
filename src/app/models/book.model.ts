@@ -49,7 +49,8 @@ Books.init(
     },
     year: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: null,
     },
     numberPages: {
       type: DataTypes.INTEGER,
