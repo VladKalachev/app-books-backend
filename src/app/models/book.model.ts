@@ -89,8 +89,8 @@ Books.belongsTo(AuthorModel);
 Genre.hasMany(Books);
 Books.belongsTo(Genre);
 
-Books.hasMany(Goal);
-Goal.belongsTo(Books);
+Goal.hasMany(Books);
+Books.belongsTo(Goal);
 
 Publishing.hasMany(Books);
 Books.belongsTo(Publishing);
