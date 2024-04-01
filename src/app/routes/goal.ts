@@ -42,4 +42,25 @@ export default function routesGoal(app: Application) {
    *        description: Ошибка на сервере
    */
   app.post('/api/goals/create', auth, goalsController.create);
+
+  /**
+   * @swagger
+   * /api/goals/:id:
+   *   get:
+   *     summary: Получение Цели по id
+   *     description: Получение Цели по id
+   *     tags:
+   *      - Goals
+   *     parameters:
+   *            - name: id
+   *              in: path
+   *              description: id у Цели
+   *              required: true
+   *     responses:
+   *       200:
+   *         description: Успешное получение Цели по id
+   *       500:
+   *        description: Ошибка на сервере
+   */
+  app.get('/api/goals/:id', auth, goalsController.one);
 }
