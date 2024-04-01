@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import GoalService from '../service/goal.service';
+import type { IGoal } from '../types/goal.interface';
 
 class GoalsController {
   async all(req: Request, res: Response, next: NextFunction) {
@@ -14,7 +15,7 @@ class GoalsController {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, completed }: { title: string; completed: string } = req.body;
+      const { title, completed }: IGoal = req.body;
       const goal = await GoalService.create(title, completed);
       res.end(JSON.stringify(goal));
     } catch (e) {
@@ -45,7 +46,7 @@ class GoalsController {
   async update(req: Request, res: Response, next: NextFunction) {
     try {
       const fromId = parseInt(req.params.id ?? '0');
-      const { title, completed }: { title: string; completed: string } = req.body;
+      const { title, completed }: IGoal = req.body;
       const goal = await GoalService.update(fromId, title, completed);
       res.end(JSON.stringify(goal));
     } catch (e) {
