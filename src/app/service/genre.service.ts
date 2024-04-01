@@ -38,7 +38,7 @@ class GenreService {
     await genre?.destroy();
   }
 
-  async update(id: number, title: string, completed: string) {
+  async update(id: number, title: string) {
     const genre = await GenreModel.findOne({
       where: {
         id,
@@ -47,7 +47,6 @@ class GenreService {
 
     await genre?.update({
       title,
-      completed,
     });
 
     return genre;
