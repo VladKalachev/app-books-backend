@@ -16,8 +16,8 @@ class GoalService {
     return await GoalModel.findAll({ where: query, ...options });
   }
 
-  async create(title: string) {
-    return await GoalModel.create({ title });
+  async create(title: string, completed: string) {
+    return await GoalModel.create({ title, completed });
   }
 
   async one(id: number) {
