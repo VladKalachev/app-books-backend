@@ -4,7 +4,6 @@ import User from './user.model';
 import AuthorModel from './author.model';
 import Genre from './genre.model';
 import Publishing from './publishing.model';
-import Goal from './goal.model';
 
 export class Books extends Model {
   declare id: number;
@@ -88,9 +87,6 @@ Books.belongsTo(AuthorModel);
 
 Genre.hasMany(Books);
 Books.belongsTo(Genre);
-
-Goal.hasMany(Books);
-Books.belongsTo(Goal);
 
 Publishing.hasMany(Books);
 Books.belongsTo(Publishing);

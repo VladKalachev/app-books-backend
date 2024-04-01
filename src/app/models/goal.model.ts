@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
+import Books from './book.model';
 
 export class Goal extends Model {
   declare id: number;
@@ -29,5 +30,8 @@ Goal.init(
     tableName: 'goals',
   },
 );
+
+Books.hasOne(Goal);
+Goal.belongsTo(Books);
 
 export default Goal;
