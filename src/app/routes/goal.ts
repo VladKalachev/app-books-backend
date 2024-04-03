@@ -63,4 +63,46 @@ export default function routesGoal(app: Application) {
    *        description: Ошибка на сервере
    */
   app.get('/api/goals/:id', auth, goalsController.one);
+
+  /**
+   * @swagger
+   * /api/goals/:id:
+   *   delete:
+   *     summary: Удаление Цели по id
+   *     description: Удаление Цели по id
+   *     tags:
+   *      - Goals
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         description: id у Цели
+   *         required: true
+   *     responses:
+   *       200:
+   *         description: Успешное удаление Цели
+   *       500:
+   *         description: Ошибка на сервере
+   */
+  app.delete('/api/goals/:id', auth, genreController.remove);
+
+  /**
+   * @swagger
+   * /api/goals/:id:
+   *  put:
+   *     summary: Редактирование Цели по id
+   *     description: Редактирование Цели по id
+   *     tags:
+   *      - Goals
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         description: id у Цели
+   *         required: true
+   *     responses:
+   *       200:
+   *         description: Успешное обновление Цели
+   *       500:
+   *         description: Ошибка на сервере
+   */
+  app.put('/api/goals/:id', auth, genreController.update);
 }
