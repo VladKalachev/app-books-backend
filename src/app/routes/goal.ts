@@ -1,7 +1,6 @@
 import type { Application } from 'express';
 import goalsController from '../controllers/goals.controlle';
 import auth from '../middleware/auth';
-import genreController from '../controllers/genre.controller';
 
 export default function routesGoal(app: Application) {
   /**
@@ -83,7 +82,7 @@ export default function routesGoal(app: Application) {
    *       500:
    *         description: Ошибка на сервере
    */
-  app.delete('/api/goals/:id', auth, genreController.remove);
+  app.delete('/api/goals/:id', auth, goalsController.remove);
 
   /**
    * @swagger
@@ -104,5 +103,5 @@ export default function routesGoal(app: Application) {
    *       500:
    *         description: Ошибка на сервере
    */
-  app.put('/api/goals/:id', auth, genreController.update);
+  app.put('/api/goals/:id', auth, goalsController.update);
 }
