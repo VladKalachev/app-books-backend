@@ -1,5 +1,5 @@
 export interface IGoal {
   title: string;
-  completed: string;
+  completed: boolean;
   BookId: number;
 }

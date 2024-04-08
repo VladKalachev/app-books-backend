@@ -16,7 +16,7 @@ class GoalService {
     return await GoalModel.findAll({ where: query, ...options });
   }
 
-  async create(title: string, completed: string, BookId: number) {
+  async create(title: string, completed: boolean, BookId: number) {
     return await GoalModel.create({ title, completed, BookId });
   }
 
@@ -38,7 +38,7 @@ class GoalService {
     await genre?.destroy();
   }
 
-  async update(id: number, title: string, completed: string, BookId: number) {
+  async update(id: number, title: string, completed: boolean, BookId: number) {
     const genre = await GoalModel.findOne({
       where: {
         id,
@@ -49,6 +49,20 @@ class GoalService {
       title,
       completed,
       BookId,
+    });
+
+    return genre;
+  }
+
+  async completed(id: number, completed: boolean) {
+    const genre = await GoalModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    await genre?.update({
+      completed,
     });
 
     return genre;

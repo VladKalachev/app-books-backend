@@ -53,6 +53,17 @@ class GoalsController {
       next(e);
     }
   }
+
+  async completed(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fromId = parseInt(req.params.id ?? '0');
+      const { completed }: IGoal = req.body;
+      const goal = await GoalService.completed(fromId, completed);
+      res.end(JSON.stringify(goal));
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 export default new GoalsController();
