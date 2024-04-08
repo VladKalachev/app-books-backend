@@ -46,8 +46,8 @@ class GoalsController {
   async update(req: Request, res: Response, next: NextFunction) {
     try {
       const fromId = parseInt(req.params.id ?? '0');
-      const { title, completed }: IGoal = req.body;
-      const goal = await GoalService.update(fromId, title, completed);
+      const { title, completed, BookId }: IGoal = req.body;
+      const goal = await GoalService.update(fromId, title, completed, BookId);
       res.end(JSON.stringify(goal));
     } catch (e) {
       next(e);
