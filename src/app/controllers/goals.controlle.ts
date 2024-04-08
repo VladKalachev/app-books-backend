@@ -15,8 +15,8 @@ class GoalsController {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, completed }: IGoal = req.body;
-      const goal = await GoalService.create(title, completed);
+      const { title, completed, BookId }: IGoal = req.body;
+      const goal = await GoalService.create(title, completed, BookId);
       res.end(JSON.stringify(goal));
     } catch (e) {
       next(e);
