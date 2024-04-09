@@ -1,6 +1,7 @@
 import type { NextFunction, Request, Response } from 'express';
 import GoalService from '../service/goal.service';
 import type { IGoal } from '../types/goal.interface';
+import BookService from '../service/book.service';
 
 class GoalsController {
   async all(req: Request, res: Response, next: NextFunction) {
@@ -16,7 +17,17 @@ class GoalsController {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { title, completed, BookId }: IGoal = req.body;
-      const goal = await GoalService.create(title, completed, BookId);
+
+      const book = await BookService.one(BookId);
+      let read = false;
+
+      if (book !== null) {
+        read = book.read;
+      } else {
+        read = completed;
+      }
+
+      const goal = await GoalService.create(title, read, BookId);
       res.end(JSON.stringify(goal));
     } catch (e) {
       next(e);

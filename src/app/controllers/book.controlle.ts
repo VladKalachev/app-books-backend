@@ -64,8 +64,6 @@ class BookController extends Controller {
         throw ApiError.UnauthorizeError();
       }
 
-      console.log('year =>', typeof read, read);
-
       const books = await BookModel.create({
         title,
         description,
