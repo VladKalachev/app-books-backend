@@ -1,5 +1,6 @@
 import GoalModel from '../models/goal.model';
 import { Op } from 'sequelize';
+import BookModel from '../models/book.model';
 
 class GoalService {
   async all(querys: any) {
@@ -39,33 +40,45 @@ class GoalService {
   }
 
   async update(id: number, title: string, completed: boolean, BookId: number) {
-    const genre = await GoalModel.findOne({
+    const goal = await GoalModel.findOne({
       where: {
         id,
       },
     });
 
-    await genre?.update({
+    await goal?.update({
       title,
       completed,
       BookId,
     });
 
-    return genre;
+    return goal;
   }
 
   async completed(id: number, completed: boolean) {
-    const genre = await GoalModel.findOne({
+    const goal: any = await GoalModel.findOne({
       where: {
         id,
       },
     });
 
-    await genre?.update({
+    const bookId = goal.BookId;
+
+    const book = await BookModel.findOne({
+      where: {
+        id: bookId,
+      },
+    });
+
+    await book?.update({
+      read: completed,
+    });
+
+    await goal?.update({
       completed,
     });
 
-    return genre;
+    return goal;
   }
 }
 
