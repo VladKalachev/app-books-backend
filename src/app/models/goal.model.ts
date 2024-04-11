@@ -5,6 +5,8 @@ import Books from './book.model';
 export class Goal extends Model {
   declare id: number;
   declare title: string;
+  declare numberPages: number;
+  declare currentPages: number;
   declare completed: boolean;
 }
 
@@ -18,6 +20,14 @@ Goal.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    numberPages: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    currentPages: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     completed: {
       type: DataTypes.BOOLEAN,
