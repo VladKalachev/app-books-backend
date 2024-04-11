@@ -1,6 +1,7 @@
 import GoalModel from '../models/goal.model';
 import { Op } from 'sequelize';
 import BookModel from '../models/book.model';
+import { type IGoal } from '../types/goal.interface';
 
 class GoalService {
   async all(querys: any) {
@@ -17,8 +18,8 @@ class GoalService {
     return await GoalModel.findAll({ where: query, ...options });
   }
 
-  async create(title: string, completed: boolean, BookId: number) {
-    return await GoalModel.create({ title, completed, BookId });
+  async create(obj: IGoal) {
+    return await GoalModel.create({ ...obj });
   }
 
   async one(id: number) {
