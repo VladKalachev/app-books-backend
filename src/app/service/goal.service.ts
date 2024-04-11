@@ -40,7 +40,13 @@ class GoalService {
     await genre?.destroy();
   }
 
-  async update(id: number, title: string, completed: boolean, BookId: number) {
+  async update(
+    id: number,
+    title: string,
+    completed: boolean,
+    BookId: number,
+    currentPages: number,
+  ) {
     const goal = await GoalModel.findOne({
       where: {
         id,
@@ -51,6 +57,7 @@ class GoalService {
       title,
       completed,
       BookId,
+      currentPages,
     });
 
     return goal;
