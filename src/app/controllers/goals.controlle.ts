@@ -16,7 +16,7 @@ class GoalsController {
 
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const { title, completed, BookId, currentPages }: IGoal = req.body;
+      const { title, completed, BookId, currentPages = 0 }: IGoal = req.body;
 
       const book = await BookService.one(BookId);
 
