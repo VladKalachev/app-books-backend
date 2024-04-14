@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../globals/sequelize';
 import Books from './book.model';
+import User from './user.model';
 
 export class Goal extends Model {
   declare id: number;
@@ -43,5 +44,8 @@ Goal.init(
 
 Books.hasOne(Goal);
 Goal.belongsTo(Books);
+
+User.hasMany(Goal);
+Goal.belongsTo(User);
 
 export default Goal;
