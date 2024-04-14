@@ -18,6 +18,18 @@ class GoalService {
     return await GoalModel.findAll({ where: query, ...options });
   }
 
+  async getAllGoalsByUserId(userId: number, querys: any) {
+    const { search = '' } = querys;
+    const query: any = {};
+
+    if (search) {
+      query.title = { [Op.substring]: search };
+    }
+
+    const goals = await GoalModel.findAll({ where: { userId, ...query } });
+    return goals;
+  }
+
   async create(obj: IGoal) {
     return await GoalModel.create({ ...obj });
   }

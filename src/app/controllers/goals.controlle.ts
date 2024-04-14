@@ -2,12 +2,20 @@ import type { NextFunction, Request, Response } from 'express';
 import GoalService from '../service/goal.service';
 import type { IGoal } from '../types/goal.interface';
 import BookService from '../service/book.service';
+import TokenService from '../service/token.service';
+import ApiError from '../globals/api-error';
 
 class GoalsController {
   async all(req: Request, res: Response, next: NextFunction) {
-    const query = req.query;
     try {
-      const goals = await GoalService.all(query);
+      const { refreshToken } = req.cookies;
+      const query = req.query;
+
+      const userData: any = TokenService.validateRefreshToken(refreshToken);
+      if (!userData) {
+        throw ApiError.UnauthorizeError();
+      }
+      const goals = await GoalService.getAllGoalsByUserId(userData.id, query);
       res.json(goals);
     } catch (e) {
       next(e);
@@ -17,6 +25,12 @@ class GoalsController {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const { title, completed, BookId, currentPages = 0 }: IGoal = req.body;
+
+      const { refreshToken } = req.cookies;
+      const userData: any = TokenService.validateRefreshToken(refreshToken);
+      if (!userData) {
+        throw ApiError.UnauthorizeError();
+      }
 
       const book = await BookService.one(BookId);
 
@@ -34,6 +48,7 @@ class GoalsController {
         title,
         completed: read,
         BookId,
+        UserId: userData.id,
         currentPages,
         numberPages,
       });

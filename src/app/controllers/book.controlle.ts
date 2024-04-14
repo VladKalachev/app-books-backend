@@ -8,9 +8,6 @@ import ApiError from '../globals/api-error';
 import BookDto from '../dtos/book.dto';
 
 import { Get, Route, Controller } from 'tsoa';
-import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
-import fs from 'fs';
 
 @Route('book')
 class BookController extends Controller {
