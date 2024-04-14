@@ -1,5 +1,3 @@
-import type BookModel from '../models/book.model';
-
 export default class BookDto {
   id: number;
   title: string;

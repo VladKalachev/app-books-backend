@@ -4,4 +4,5 @@ export interface IGoal {
   numberPages: number;
   currentPages: number;
   BookId: number;
+  UserId: number;
 }
