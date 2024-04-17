@@ -7,6 +7,7 @@ class User extends Model {
   declare password: string;
   declare isActivated: boolean;
   declare activationLink: boolean;
+  declare isAdmin: boolean;
 }
 
 User.init(
@@ -28,6 +29,11 @@ User.init(
     activationLink: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   {
