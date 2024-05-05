@@ -43,6 +43,9 @@ httpsServer.listen(PORT_SSL, () => {
 
 registerMiddleware(app);
 registerRoutes(app);
-registerSwagger(app);
+
+if (process.env.NODE_ENV === 'develop') {
+  registerSwagger(app);
+}
 
 app.use(errorParser);
