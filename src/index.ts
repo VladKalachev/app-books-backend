@@ -24,7 +24,7 @@ const credentials = {
 const app: Application = express();
 const httpsServer = https.createServer(credentials, app);
 
-app.use('/upload', express.static(path.resolve(__dirname, '..', 'upload')));
+app.use('/api/upload', express.static(path.resolve(__dirname, '..', 'upload')));
 
 app.use(
   cors({
